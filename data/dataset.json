@@ -1,0 +1,38 @@
+[
+  {
+    "type": "legitimate",
+    "subject": "Subject: Training session notes",
+    "body": "Subject: Training session notes\n\nI booked the lab for next Wednesday. The calendar invite includes location and equipment details.\n\nThanks for reviewing the document.\n\nBest,\nTaylor Khan",
+    "reasons": ["Category: legitimate", "Severity level: low"]
+  },
+  {
+    "type": "legitimate",
+    "subject": "Subject: Documentation review",
+    "body": "Subject: Documentation review\n\nThanks for attending the workshop. Here are the links to references and the slide deck.\n\nFeel free to add notes before we meet.\n\nBest,\nJamie Singh",
+    "reasons": ["Category: legitimate", "Severity level: low"]
+  },
+  {
+    "type": "phishing",
+    "subject": "Security Notice",
+    "body": "Attention, this is the fraud prevention accounts team. There are security violations on your account. To remain in good standing, follow the confidential steps to review your account today. Failure to respond may result in a suspension.\n\nKeywords: mcafee telegram violations official apple\n\nCompliance Team,\nAlex Martinez",
+    "reasons": ["Category: authority_scam", "Severity level: high"]
+  },
+  {
+    "type": "phishing",
+    "subject": "Security Notice",
+    "body": "Hello, your profile has been locked. Use the secure link to verify your username and restore access. Enter your verification code to continue.\n\nKeywords: pin update password sign in settings password\n\nSincerely,\nRiley Khan",
+    "reasons": ["Category: credential_harvesting", "Severity level: high"]
+  },
+  {
+    "type": "phishing",
+    "subject": "Security Notice",
+    "body": "Hi there, congratulations! You are the winner of a refund. To collect your gift of $10,000, please provide your credit card to process the sum. This offer is available today only.\n\nKeywords: million contest ssn\n\nSecurity Team,\nAlex Khan",
+    "reasons": ["Category: financial_scam", "Severity level: medium"]
+  },
+  {
+    "type": "phishing",
+    "subject": "Security Notice",
+    "body": "Attention, this is an urgent notice regarding your account. Your access will expire soon. To avoid interruption, act now and follow the instructions immediately. This is time sensitive and ends soon.\n\nKeywords: don't wait, expire, instantly, expires midnight, last chance, hurry\n\nSupport Desk,\nJamie Khan",
+    "reasons": ["Category: urgency", "Severity level: medium"]
+  }
+]
