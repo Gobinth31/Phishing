@@ -18,20 +18,31 @@ How to Install & Test:
         Install Ollama.
 
     Post-requisites(Install Project Phishing):
+    
         step-1(download the Project):  git clone https://github.com/Gobinth31/Phishing.git
+        
         step-2(Change into the project directory):  cd Phishing/
+        
         step-3(Install dependencies):   install npm
+        
         step-4(download the AI model):  ollama pull qwen2.5:3b
+        
         step-5(start the services and API server):  ./start.sh
+        
 
 How to test Emails:
  #Open a new terminal window(In another terminal ./start.sh running is compalsory) and run Your email in curl inside emailText command
+
+
 bash:
  curl -X POST http://localhost:3000/api/detect-phishing \
   -H "Content-Type: application/json" \
   -d '{
-    "emailText": "Urgent:ENTER_YOUR_SUSPENTED_EMAIL_SUBJECT_HERE...."
+    "emailText": "Urgent:ENTER_YOUR_SUSPENTED_EMAIL'S_SUBJECT_HERE...."
   }'
+
+
+  
 
 
                                   Thank you !!!!
