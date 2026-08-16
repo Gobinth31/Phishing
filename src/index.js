@@ -8,6 +8,7 @@ const __dirname = path.dirname(__filename);
 
 const app = express();
 app.use(express.json());
+app.use(express.static('public'));
 
 // Load dataset examples
 const datasetPath = path.join(__dirname, '../data/dataset.json');
