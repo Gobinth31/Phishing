@@ -1,0 +1,243 @@
+:root {
+  --bg-dark: #0b0716;
+  --card-bg: rgba(22, 15, 41, 0.75);
+  --border-color: rgba(147, 51, 234, 0.25);
+  
+  --purple-primary: #8b5cf6;
+  --purple-glow: rgba(139, 92, 246, 0.35);
+  --skyblue-primary: #38bdf8;
+  --skyblue-glow: rgba(56, 189, 248, 0.35);
+  
+  --text-main: #f8fafc;
+  --text-muted: #94a3b8;
+  
+  --danger-red: #ef4444;
+  --safe-green: #10b981;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background-color: var(--bg-dark);
+  color: var(--text-main);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem 1rem;
+  overflow-x: hidden;
+  position: relative;
+}
+
+.glow-bg {
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, var(--purple-glow) 0%, var(--skyblue-glow) 50%, transparent 70%);
+  top: -100px;
+  left: 50%;
+  transform: translateX(-50%);
+  filter: blur(80px);
+  z-index: -1;
+}
+
+.container {
+  width: 100%;
+  max-width: 680px;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.logo {
+  font-size: 2.2rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, var(--skyblue-primary), var(--purple-primary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.logo i {
+  -webkit-text-fill-color: initial;
+  color: var(--skyblue-primary);
+}
+
+.subtitle {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  margin-top: 0.3rem;
+}
+
+.card {
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  backdrop-filter: blur(12px);
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  margin-bottom: 1.5rem;
+}
+
+.input-card h2 {
+  font-size: 1.25rem;
+  margin-bottom: 1.2rem;
+  color: var(--skyblue-primary);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.input-group {
+  margin-bottom: 1.2rem;
+}
+
+.input-group label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  margin-bottom: 0.4rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+input[type="text"], textarea {
+  width: 100%;
+  background: rgba(11, 7, 22, 0.6);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 0.8rem 1rem;
+  color: var(--text-main);
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+}
+
+input[type="text"]:focus, textarea:focus {
+  outline: none;
+  border-color: var(--skyblue-primary);
+  box-shadow: 0 0 12px var(--skyblue-glow);
+}
+
+button {
+  width: 100%;
+  padding: 0.9rem;
+  border: none;
+  border-radius: 8px;
+  background: linear-gradient(135deg, var(--purple-primary), var(--skyblue-primary));
+  color: #fff;
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px var(--purple-glow);
+}
+
+.hidden {
+  display: none !important;
+}
+
+.status-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.status-icon {
+  font-size: 2rem;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.phishing .status-icon {
+  background: rgba(239, 68, 68, 0.2);
+  color: var(--danger-red);
+}
+
+.legitimate .status-icon {
+  background: rgba(16, 185, 129, 0.2);
+  color: var(--safe-green);
+}
+
+.metrics-grid {
+  margin-bottom: 1.5rem;
+}
+
+.metric-label {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.confidence-bar-container {
+  width: 100%;
+  height: 10px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 5px;
+  margin: 0.5rem 0;
+  overflow: hidden;
+}
+
+.confidence-fill {
+  height: 100%;
+  width: 0%;
+  transition: width 0.6s ease;
+}
+
+.phishing .confidence-fill {
+  background: var(--danger-red);
+}
+
+.legitimate .confidence-fill {
+  background: var(--safe-green);
+}
+
+.metric-value {
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+.reasons-container h4 {
+  font-size: 0.95rem;
+  color: var(--skyblue-primary);
+  margin-bottom: 0.8rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.reasons-container ul {
+  list-style: none;
+}
+
+.reasons-container li {
+  background: rgba(255, 255, 255, 0.04);
+  border-left: 3px solid var(--purple-primary);
+  padding: 0.6rem 0.8rem;
+  margin-bottom: 0.4rem;
+  border-radius: 0 6px 6px 0;
+  font-size: 0.9rem;
+}

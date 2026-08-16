@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Phishing Detector AI</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <div class="glow-bg"></div>
+  
+  <div class="container">
+    <header class="header">
+      <div class="logo">
+        <i class="fa-solid fa-shield-halved"></i>
+        <span>PhishGuard AI</span>
+      </div>
+      <p class="subtitle">Local LLM Phishing Threat Analysis</p>
+    </header>
+
+    <main class="main-content">
+      <form id="phishing-form" class="card input-card">
+        <h2><i class="fa-solid fa-envelope-open-text"></i> Analyze Email</h2>
+        
+        <div class="input-group">
+          <label for="email-subject">Subject Line</label>
+          <input 
+            type="text" 
+            id="email-subject" 
+            placeholder="e.g., Urgent: Account Security Verification Required"
+            required
+          >
+        </div>
+
+        <div class="input-group">
+          <label for="email-body">Email Content / Body</label>
+          <textarea 
+            id="email-body" 
+            rows="6" 
+            placeholder="Paste full email text here..." 
+            required
+          ></textarea>
+        </div>
+
+        <button type="submit" id="analyze-btn">
+          <i class="fa-solid fa-bolt"></i> Detect Threat
+        </button>
+      </form>
+
+      <div id="results-card" class="card results-card hidden">
+        <div id="status-header" class="status-header">
+          <div class="status-icon" id="status-icon"></div>
+          <div>
+            <h3 id="status-title">Status Title</h3>
+            <p id="status-desc">Confidence score and risk factors below.</p>
+          </div>
+        </div>
+
+        <div class="metrics-grid">
+          <div class="metric-box">
+            <span class="metric-label">Confidence Score</span>
+            <div class="confidence-bar-container">
+              <div id="confidence-fill" class="confidence-fill"></div>
+            </div>
+            <span id="confidence-value" class="metric-value">0%</span>
+          </div>
+        </div>
+
+        <div class="reasons-container">
+          <h4><i class="fa-solid fa-list-check"></i> Risk Category Indicators</h4>
+          <ul id="reasons-list"></ul>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
