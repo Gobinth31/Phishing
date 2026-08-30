@@ -3,6 +3,7 @@
 [![Node.js](https://img.shields.io/badge/Node.js-18+-68a063?logo=node.js&logoColor=white)](https://nodejs.org)
 [![Express](https://img.shields.io/badge/Express-5.x-000000?logo=express&logoColor=white)](https://expressjs.com)
 [![Google Gemini](https://img.shields.io/badge/AI-Google%20Gemini-4285F4?logo=google&logoColor=white)](https://ai.google.dev)
+[![Vercel](https://img.shields.io/badge/Deploy-Vercel-000000?logo=vercel&logoColor=white)](https://vercel.com)
 [![Railway](https://img.shields.io/badge/Deploy-Railway-0B0D0E?logo=railway&logoColor=white)](https://railway.app)
 
 An intelligent, cloud-ready cybersecurity web application and API that inspects incoming emails to detect phishing, social engineering, credential harvesting, authority spoofing, and fraud vectors in real time.
@@ -20,7 +21,7 @@ An intelligent, cloud-ready cybersecurity web application and API that inspects 
   - Key security findings and actionable recommendations.
   - One-click copyable incident reports.
 - 🎯 **1-Click Test Scenarios**: Quick-load phishing and legitimate email samples for immediate testing.
-- 🚀 **Railway & Cloud Ready**: Pre-configured with `railway.json`, `Procfile`, health checks (`/api/health`), and dynamic port binding (`0.0.0.0:$PORT`).
+- 🚀 **Zero-Config Cloud Deployments**: Pre-configured for both **Vercel** (`vercel.json`, serverless `api/index.js`) and **Railway** (`railway.json`, `Procfile`).
 
 ---
 
@@ -63,48 +64,46 @@ npm test
 
 ---
 
-## ☁️ Deploy to Railway
+## ▲ How to Deploy to Vercel (1-Click)
 
-### Method 1: Deploy via Railway Web Dashboard (Recommended)
+### Option A: Via Vercel Web Dashboard (Recommended)
 
-1. Push your latest code to GitHub:
+1. Push your code to GitHub:
    ```bash
    git add .
-   git commit -m "feat: complete phishing detection system with Railway support"
+   git commit -m "feat: add Vercel serverless support"
    git push origin main
    ```
-2. Go to **[railway.app](https://railway.app)** and log in.
-3. Click **"New Project"** → **"Deploy from GitHub repo"**.
-4. Select your **`Gobinth31/Phishing`** repository.
-5. In the project dashboard:
-   - Go to **Variables** → Add `GEMINI_API_KEY` = `your_api_key`.
-   - Go to **Settings** → **Networking** → Click **Generate Domain**.
-6. Railway will automatically build and deploy the app with a public HTTPS link!
+2. Go to **[vercel.com/new](https://vercel.com/new)** and log in with your GitHub account.
+3. Import the repository: **`Gobinth31/Phishing`**.
+4. In the **Environment Variables** section:
+   - Key: `GEMINI_API_KEY`
+   - Value: `your_gemini_api_key_here`
+5. Click **Deploy**. Vercel will build and assign an instant public HTTPS URL (e.g. `https://phishing-ten.vercel.app`).
+
+### Option B: Via Vercel CLI
+
+```bash
+# 1. Login to Vercel
+npx vercel login
+
+# 2. Deploy to preview or production
+npx vercel --prod
+```
 
 ---
 
-### Method 2: Deploy via Railway CLI
+## 🚂 How to Deploy to Railway
 
-1. Authenticate with Railway:
+1. Push your latest code to GitHub:
    ```bash
-   railway login
+   git push origin main
    ```
-2. Initialize or link your project:
-   ```bash
-   railway init
-   ```
-3. Set your environment variable:
-   ```bash
-   railway variables --set GEMINI_API_KEY="your_api_key_here"
-   ```
-4. Deploy the application:
-   ```bash
-   railway up
-   ```
-5. Generate a public domain:
-   ```bash
-   railway domain
-   ```
+2. Go to **[railway.app/new](https://railway.app/new)**.
+3. Select **"Deploy from GitHub repo"** → Choose **`Gobinth31/Phishing`**.
+4. Add Environment Variable:
+   - `GEMINI_API_KEY` = `your_gemini_api_key`
+5. In **Settings** → **Networking** → Click **"Generate Domain"**.
 
 ---
 
@@ -116,7 +115,7 @@ npm test
 {
   "status": "healthy",
   "uptimeSeconds": 142,
-  "engine": "Gemini AI (gemini-3.6-flash)",
+  "engine": "Google Gemini AI (gemini-3.6-flash)",
   "environment": "production",
   "version": "1.0.0"
 }
@@ -159,7 +158,7 @@ npm test
     ]
   },
   "meta": {
-    "engine": "gemini:gemini-3.6-flash",
+    "engine": "Google Gemini (gemini-3.6-flash)",
     "processingTimeMs": 312
   }
 }

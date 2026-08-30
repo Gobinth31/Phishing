@@ -347,24 +347,29 @@ app.post('/api/detect-phishing', async (req, res) => {
   });
 });
 
-// Start Server
-const server = app.listen(PORT, '0.0.0.0', () => {
-  console.log(`=======================================================`);
-  console.log(`🛡️  PhishGuard AI — Online Cloud Threat Detector`);
-  console.log(`🚀  Port: ${PORT} (Bound to 0.0.0.0 for Railway)`);
-  console.log(`🌐  Local URL: http://localhost:${PORT}`);
-  console.log(`🤖  Active Engine: ${geminiClient ? 'Google Gemini Cloud AI (' + GEMINI_MODEL + ')' : 'Heuristic Engine'}`);
-  console.log(`=======================================================`);
-});
+// Export app for Vercel Serverless Functions
+export default app;
 
-// Graceful shutdown for Railway & Docker
-const handleShutdown = (signal) => {
-  console.log(`[${signal}] Shutting down gracefully...`);
-  server.close(() => {
-    console.log('Server closed successfully.');
-    process.exit(0);
+// Start Server when running directly (Local development, Railway, Docker)
+if (!process.env.VERCEL) {
+  const server = app.listen(PORT, '0.0.0.0', () => {
+    console.log(`=======================================================`);
+    console.log(`🛡️  PhishGuard AI — Online Cloud Threat Detector`);
+    console.log(`🚀  Port: ${PORT} (Bound to 0.0.0.0 for Railway)`);
+    console.log(`🌐  Local URL: http://localhost:${PORT}`);
+    console.log(`🤖  Active Engine: ${geminiClient ? 'Google Gemini Cloud AI (' + GEMINI_MODEL + ')' : 'Heuristic Engine'}`);
+    console.log(`=======================================================`);
   });
-};
 
-process.on('SIGTERM', () => handleShutdown('SIGTERM'));
-process.on('SIGINT', () => handleShutdown('SIGINT'));
+  // Graceful shutdown for Railway & Docker
+  const handleShutdown = (signal) => {
+    console.log(`[${signal}] Shutting down gracefully...`);
+    server.close(() => {
+      console.log('Server closed successfully.');
+      process.exit(0);
+    });
+  };
+
+  process.on('SIGTERM', () => handleShutdown('SIGTERM'));
+  process.on('SIGINT', () => handleShutdown('SIGINT'));
+}
