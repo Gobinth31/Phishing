@@ -3,76 +3,229 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Phishing Detector AI</title>
+  <title>PhishGuard AI — Advanced Email Threat & Phishing Detection</title>
   <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
-  <div class="glow-bg"></div>
-  
-  <div class="container">
-    <header class="header">
-      <div class="logo">
-        <i class="fa-solid fa-shield-halved"></i>
-        <span>PhishGuard AI</span>
+  <div class="ambient-background">
+    <div class="glow-orb orb-1"></div>
+    <div class="glow-orb orb-2"></div>
+    <div class="glow-grid"></div>
+  </div>
+
+  <div class="app-wrapper">
+    <!-- Header -->
+    <header class="app-header">
+      <div class="header-content">
+        <div class="brand">
+          <div class="brand-icon">
+            <i class="fa-solid fa-shield-halved"></i>
+          </div>
+          <div class="brand-text">
+            <div class="brand-title">
+              <h1>PhishGuard AI</h1>
+              <span class="version-badge">v1.0</span>
+            </div>
+            <p class="brand-subtitle">Cloud AI Email Phishing & Fraud Threat Intelligence</p>
+          </div>
+        </div>
+
+        <div class="system-status" id="system-status">
+          <span class="status-dot"></span>
+          <span class="status-label" id="engine-status-text">Connecting to Security Engine...</span>
+        </div>
       </div>
-      <p class="subtitle">Local LLM Phishing Threat Analysis</p>
     </header>
 
-    <main class="main-content">
-      <form id="phishing-form" class="card input-card">
-        <h2><i class="fa-solid fa-envelope-open-text"></i> Analyze Email</h2>
-        
-        <div class="input-group">
-          <label for="email-subject">Subject Line</label>
-          <input 
-            type="text" 
-            id="email-subject" 
-            placeholder="e.g., Urgent: Account Security Verification Required"
-            required
-          >
+    <main class="main-layout">
+      <!-- Quick Test Samples Bar -->
+      <section class="samples-section">
+        <div class="samples-header">
+          <span><i class="fa-solid fa-bolt"></i> Quick Test Scenarios:</span>
         </div>
-
-        <div class="input-group">
-          <label for="email-body">Email Content / Body</label>
-          <textarea 
-            id="email-body" 
-            rows="6" 
-            placeholder="Paste full email text here..." 
-            required
-          ></textarea>
+        <div class="samples-chips" id="samples-chips">
+          <button type="button" class="chip chip-phish" data-sample-id="urgent-bank">
+            <i class="fa-solid fa-triangle-exclamation"></i> Bank Security Alert
+          </button>
+          <button type="button" class="chip chip-phish" data-sample-id="password-reset">
+            <i class="fa-solid fa-key"></i> Password Reset Phish
+          </button>
+          <button type="button" class="chip chip-phish" data-sample-id="refund-lure">
+            <i class="fa-solid fa-gift"></i> $10,000 Refund Lure
+          </button>
+          <button type="button" class="chip chip-legit" data-sample-id="meeting-notes">
+            <i class="fa-solid fa-calendar-check"></i> Team Meeting Sync
+          </button>
+          <button type="button" class="chip chip-legit" data-sample-id="doc-review">
+            <i class="fa-solid fa-file-lines"></i> Project Review
+          </button>
         </div>
+      </section>
 
-        <button type="submit" id="analyze-btn">
-          <i class="fa-solid fa-bolt"></i> Detect Threat
-        </button>
-      </form>
-
-      <div id="results-card" class="card results-card hidden">
-        <div id="status-header" class="status-header">
-          <div class="status-icon" id="status-icon"></div>
-          <div>
-            <h3 id="status-title">Status Title</h3>
-            <p id="status-desc">Confidence score and risk factors below.</p>
+      <!-- Input Card -->
+      <section class="card input-card">
+        <div class="card-header">
+          <div class="card-title">
+            <i class="fa-solid fa-envelope-open-text"></i>
+            <h2>Inspect Email Message</h2>
           </div>
+          <button type="button" id="clear-btn" class="btn-ghost" title="Clear Fields">
+            <i class="fa-solid fa-trash-can"></i> Clear
+          </button>
         </div>
 
-        <div class="metrics-grid">
-          <div class="metric-box">
-            <span class="metric-label">Confidence Score</span>
-            <div class="confidence-bar-container">
-              <div id="confidence-fill" class="confidence-fill"></div>
+        <form id="phishing-form">
+          <div class="form-group">
+            <label for="email-subject">
+              <span>Subject Line</span>
+              <span class="optional-tag">Required</span>
+            </label>
+            <div class="input-wrapper">
+              <i class="fa-solid fa-heading input-icon"></i>
+              <input 
+                type="text" 
+                id="email-subject" 
+                placeholder="e.g. Action Required: Unauthorized login attempt from Russia"
+                required
+                autocomplete="off"
+              >
             </div>
-            <span id="confidence-value" class="metric-value">0%</span>
           </div>
-        </div>
 
-        <div class="reasons-container">
-          <h4><i class="fa-solid fa-list-check"></i> Risk Category Indicators</h4>
-          <ul id="reasons-list"></ul>
+          <div class="form-group">
+            <label for="email-body">
+              <span>Email Body / Content</span>
+              <span class="char-count" id="body-char-count">0 chars</span>
+            </label>
+            <div class="textarea-wrapper">
+              <textarea 
+                id="email-body" 
+                rows="7" 
+                placeholder="Paste the full email text, headers, or body here..."
+                required
+              ></textarea>
+            </div>
+          </div>
+
+          <div class="form-actions">
+            <button type="submit" id="analyze-btn" class="btn-primary">
+              <span class="btn-content">
+                <i class="fa-solid fa-shield-virus"></i>
+                <span>Analyze Threats with AI</span>
+              </span>
+            </button>
+          </div>
+        </form>
+      </section>
+
+      <!-- Analysis In-Progress Banner (Hidden by default) -->
+      <div id="scanning-state" class="card scanning-card hidden">
+        <div class="scan-spinner-container">
+          <div class="cyber-spinner"></div>
+          <i class="fa-solid fa-shield-halved spinner-icon"></i>
+        </div>
+        <div class="scan-details">
+          <h3 id="scan-step-title">Analyzing Email Threat Vectors...</h3>
+          <p id="scan-step-desc">Evaluating semantic intent, urgency triggers, and credential harvesting patterns.</p>
+          <div class="scan-progress-bar">
+            <div class="scan-progress-fill" id="scan-progress-fill"></div>
+          </div>
         </div>
       </div>
+
+      <!-- Results Card (Hidden by default) -->
+      <section id="results-card" class="card results-card hidden">
+        <!-- Verdict Banner -->
+        <div class="verdict-banner" id="verdict-banner">
+          <div class="verdict-icon-container" id="verdict-icon-container">
+            <i class="fa-solid fa-triangle-exclamation" id="verdict-icon"></i>
+          </div>
+          <div class="verdict-text">
+            <div class="verdict-status-row">
+              <span class="risk-badge" id="risk-level-badge">CRITICAL RISK</span>
+              <span class="verdict-label" id="verdict-label">Phishing Threat Detected</span>
+            </div>
+            <p class="verdict-summary" id="verdict-summary">This message exhibits malicious patterns designed to harvest credentials or manipulate user action.</p>
+          </div>
+          <div class="score-display">
+            <div class="score-number-wrap">
+              <span class="score-number" id="confidence-percentage">98%</span>
+              <span class="score-label">Threat Confidence</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Risk Bar -->
+        <div class="threat-meter-container">
+          <div class="threat-meter-labels">
+            <span>Legitimate (0%)</span>
+            <span>Suspicious (50%)</span>
+            <span>Malicious (100%)</span>
+          </div>
+          <div class="threat-meter-track">
+            <div class="threat-meter-fill" id="threat-meter-fill"></div>
+          </div>
+        </div>
+
+        <!-- Indicators Chips -->
+        <div class="indicators-section" id="indicators-section">
+          <h4 class="section-title"><i class="fa-solid fa-tags"></i> Detected Threat Vectors</h4>
+          <div class="indicators-grid" id="indicators-grid">
+            <!-- Populated dynamically -->
+          </div>
+        </div>
+
+        <!-- Detailed Findings & Reasons -->
+        <div class="findings-section">
+          <h4 class="section-title"><i class="fa-solid fa-magnifying-glass-chart"></i> Security Findings</h4>
+          <ul class="reasons-list" id="reasons-list">
+            <!-- Populated dynamically -->
+          </ul>
+        </div>
+
+        <!-- Recommendations -->
+        <div class="recommendations-section">
+          <h4 class="section-title"><i class="fa-solid fa-user-shield"></i> Recommended Actions</h4>
+          <ul class="recommendations-list" id="recommendations-list">
+            <!-- Populated dynamically -->
+          </ul>
+        </div>
+
+        <!-- Results Footer & Action Toolbar -->
+        <div class="results-footer">
+          <div class="meta-info">
+            <span><i class="fa-solid fa-microchip"></i> <strong id="meta-engine">Gemini AI</strong></span>
+            <span><i class="fa-solid fa-stopwatch"></i> <strong id="meta-time">420ms</strong></span>
+          </div>
+          <div class="toolbar-buttons">
+            <button type="button" id="copy-report-btn" class="btn-secondary">
+              <i class="fa-solid fa-copy"></i> Copy Report
+            </button>
+            <button type="button" id="reset-scan-btn" class="btn-secondary">
+              <i class="fa-solid fa-arrow-rotate-left"></i> New Scan
+            </button>
+          </div>
+        </div>
+      </section>
     </main>
+
+    <!-- Footer -->
+    <footer class="app-footer">
+      <div class="footer-links">
+        <a href="/api/health" target="_blank"><i class="fa-solid fa-heart-pulse"></i> API Health</a>
+        <span>•</span>
+        <a href="/api/examples" target="_blank"><i class="fa-solid fa-database"></i> Training Dataset</a>
+        <span>•</span>
+        <a href="https://railway.app" target="_blank"><i class="fa-solid fa-cloud"></i> Railway Ready</a>
+      </div>
+      <p class="disclaimer">
+        AI security models provide probabilistic assessments. Always verify sensitive requests through authorized organizational channels.
+      </p>
+    </footer>
   </div>
 
   <script src="app.js"></script>

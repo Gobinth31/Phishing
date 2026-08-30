@@ -1,22 +1,40 @@
 {
-  "name": "phishing",
+  "name": "phishing-detector-ai",
   "version": "1.0.0",
-  "description": "This is the project to identify whether the emails are fraud or not...",
-  "main": "index.js",
+  "description": "AI-Powered Email Phishing & Fraud Threat Analysis API and Web Application",
+  "main": "src/index.js",
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node src/index.js",
+    "dev": "node --watch src/index.js",
+    "test": "node --test test/*.test.js"
+  },
+  "engines": {
+    "node": ">=18.0.0"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Gobinth31/Phishing.git"
   },
-  "keywords": [],
-  "type": "module",
+  "keywords": [
+    "phishing",
+    "security",
+    "cybersecurity",
+    "ai",
+    "gemini",
+    "fraud-detection",
+    "email-analysis"
+  ],
+  "author": "",
+  "license": "ISC",
   "bugs": {
     "url": "https://github.com/Gobinth31/Phishing/issues"
   },
   "homepage": "https://github.com/Gobinth31/Phishing#readme",
   "dependencies": {
+    "@google/genai": "^2.19.0",
+    "cors": "^2.8.6",
+    "dotenv": "^17.4.2",
     "express": "^5.2.1"
   }
 }
